@@ -7,7 +7,6 @@ public class MovableObject : MonoBehaviour
         Idle,
         Walk,
         Jump,
-        Dash,
         Attack,
         Hurt
     }
@@ -18,8 +17,5 @@ public class MovableObject : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position += velocity * speed * Time.deltaTime;
-
-        if(velocity.x > 0) transform.localScale = new Vector3(2f, 2f, 2f);
-        if (velocity.x < 0) transform.localScale = new Vector3(-2f, 2f, 2f);
     }
 }

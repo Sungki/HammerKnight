@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Jump))]
 public class PlayerController : MovableObject, IPlayerFSM
 {
+    [HideInInspector] public Jump jump;
+
     public State e;
     private bool _isNewState = false;
     private AnimatorStateInfo myAnimatorStateInfo;
@@ -11,6 +14,7 @@ public class PlayerController : MovableObject, IPlayerFSM
 
     private void Awake()
     {
+        jump = GetComponent<Jump>();
         SetState(State.Idle);
         StartCoroutine(FSMMain());
     }
@@ -62,26 +66,6 @@ public class PlayerController : MovableObject, IPlayerFSM
         {
             yield return null;
             if (_isNewState) break;
-        } while (!_isNewState);
-    }
-
-    public IEnumerator Dash()
-    {
-        float timeSpan = 0.0f;
-        float checkTime = 0.3f;
-
-        do
-        {
-            yield return null;
-            if (_isNewState) break;
-
-            timeSpan += Time.deltaTime;
-            if (timeSpan > checkTime)
-            {
-                timeSpan = 0;
-                SetState(State.Idle);
-            }
-
         } while (!_isNewState);
     }
 
