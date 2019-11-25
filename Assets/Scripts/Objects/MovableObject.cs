@@ -12,7 +12,7 @@ public class MovableObject : MonoBehaviour
     }
 
     [HideInInspector] public Vector3 velocity = Vector3.zero;
-    protected float speed = 6f;
+    protected float speed = 5f;
 
     private void FixedUpdate()
     {

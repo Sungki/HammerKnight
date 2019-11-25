@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Jump))]
+[RequireComponent(typeof(HammerAttack))]
 public class PlayerController : MovableObject, IPlayerFSM
 {
     [HideInInspector] public Jump jump;
+    [HideInInspector] public HammerAttack hammer;
 
     public State e;
     private bool _isNewState = false;
@@ -15,6 +17,8 @@ public class PlayerController : MovableObject, IPlayerFSM
     private void Awake()
     {
         jump = GetComponent<Jump>();
+        hammer = GetComponentInChildren<HammerAttack>();
+
         SetState(State.Idle);
         StartCoroutine(FSMMain());
     }

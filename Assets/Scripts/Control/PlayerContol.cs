@@ -33,11 +33,7 @@ public class PlayerContol : MonoBehaviour
 
     void Keyboard()
     {
-        if (Input.GetButtonDown("Horizontal")) pc.SetState(PlayerController.State.Walk);
-        if (Input.GetButtonUp("Horizontal")) pc.SetState(PlayerController.State.Idle);
-
         pc.velocity += new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-
 
         if (Input.GetButton("Jump") && cg.isGrounded)
         {
@@ -47,6 +43,11 @@ public class PlayerContol : MonoBehaviour
         {
             isPressed = false;
             isMaxJump = false;
+        }
+
+        if (Input.GetButton("Attack"))
+        {
+            pc.hammer.Action(this.gameObject);
         }
     }
 }
