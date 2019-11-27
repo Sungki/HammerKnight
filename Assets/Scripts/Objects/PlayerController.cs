@@ -75,6 +75,8 @@ public class PlayerController : MovableObject, IPlayerFSM
 
     public IEnumerator Attack()
     {
+        hammer.fj.enabled = false;
+        hammer.hj.enabled = true;
         myAnimatorNormalizedTime = 0;
 
         do
@@ -88,6 +90,11 @@ public class PlayerController : MovableObject, IPlayerFSM
             }
 
         } while (!_isNewState);
+
+        hammer.rb.velocity = Vector2.zero;
+//        hammer.transform.rotation = Quaternion.Euler(0, 0, 45);
+        hammer.hj.enabled = false;
+        hammer.fj.enabled = true;
     }
 
     public IEnumerator Hurt()

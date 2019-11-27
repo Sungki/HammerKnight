@@ -38,6 +38,7 @@ public class PlayerContol : MonoBehaviour
         if (Input.GetButton("Jump") && cg.isGrounded)
         {
             isPressed = true;
+            pc.SetState(PlayerController.State.Jump);
         }
         if (Input.GetButtonUp("Jump"))
         {
@@ -47,7 +48,10 @@ public class PlayerContol : MonoBehaviour
 
         if (Input.GetButton("Attack"))
         {
+            pc.SetState(PlayerController.State.Attack);
             pc.hammer.Action(this.gameObject);
         }
+        if(Input.GetButtonUp("Attack")) pc.SetState(PlayerController.State.Idle);
+
     }
 }

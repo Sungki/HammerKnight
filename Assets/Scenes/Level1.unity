@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 1025672511}
   - component: {fileID: 1025672510}
   - component: {fileID: 1025672512}
+  - component: {fileID: 1025672513}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -594,15 +595,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025672508}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.602, y: 0.13, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2995639, w: 0.95407623}
+  m_LocalPosition: {x: -0.51, y: 0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 354707}
   - {fileID: 2095644327}
   m_Father: {fileID: 411019842}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.863003}
 --- !u!114 &1025672510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005b859cb8ab9854091af01521595954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  fj: {fileID: 0}
+  hj: {fileID: 0}
 --- !u!50 &1025672511
 Rigidbody2D:
   serializedVersion: 4
@@ -650,8 +654,8 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0.5, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0.13}
+  m_Anchor: {x: 0.602, y: -0.00999999}
+  m_ConnectedAnchor: {x: -0.01032911, y: 0.7459061}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -660,6 +664,24 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!255 &1025672513
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025672508}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 411019844}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -0.51, y: 0.40999997}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1359529510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029498386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.74, y: 2.06, z: 0}
+  m_LocalPosition: {x: 7.74, y: 3.58, z: 0}
   m_LocalScale: {x: 10, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
