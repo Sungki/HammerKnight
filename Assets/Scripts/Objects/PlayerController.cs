@@ -14,8 +14,11 @@ public class PlayerController : MovableObject, IPlayerFSM
     private AnimatorStateInfo myAnimatorStateInfo;
     private float myAnimatorNormalizedTime = 0.0f;
 
+    private Rigidbody2D rb;
+
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         jump = GetComponent<Jump>();
         hammer = GetComponentInChildren<HammerAttack>();
 
@@ -92,17 +95,35 @@ public class PlayerController : MovableObject, IPlayerFSM
         } while (!_isNewState);
 
         hammer.rb.velocity = Vector2.zero;
-//        hammer.transform.rotation = Quaternion.Euler(0, 0, 45);
         hammer.hj.enabled = false;
         hammer.fj.enabled = true;
     }
 
     public IEnumerator Hurt()
     {
+        float timeSpan = 0.0f;
+        float checkTime = 0.5f;
+
+        rb.constraints = 0;
+        velocity = Vector3.zero;
+        rb.AddForce(Vector2.left * 30f, ForceMode2D.Impulse);
+
         do
         {
             yield return null;
             if (_isNewState) break;
+
+            timeSpan += Time.deltaTime;
+            if (timeSpan > checkTime)
+            {
+                timeSpan = 0;
+                SetState(State.Idle);
+            }
+
         } while (!_isNewState);
+
+        rb.velocity = Vector2.zero;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

@@ -17,7 +17,7 @@ public class FollowTarget : MonoBehaviour
         if (target)
         {
             transform.position = Vector3.Lerp(transform.position, target.transform.position, damping * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -15);
         }
         else
         {

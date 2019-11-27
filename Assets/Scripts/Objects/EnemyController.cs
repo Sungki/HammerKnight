@@ -5,22 +5,20 @@ using UnityEngine;
 public class EnemyController : MovableObject, IPlayerFSM
 {
     public State e;
-    private bool _isNewState = false;
-    private AnimatorStateInfo myAnimatorStateInfo;
-    private float myAnimatorNormalizedTime = 0.0f;
-    private float TimeLeft = 1.0f;
-    private float nextTime = 0.0f;
-    protected float movementAI = 0;
+    protected bool _isNewState = false;
+    protected Vector3 target = Vector3.zero;
+
+    protected GameObject player;
+    protected Rigidbody2D rb;
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         SetState(State.Idle);
         StartCoroutine(FSMMain());
-    }
-
-    private void Update()
-    {
-        myAnimatorNormalizedTime = myAnimatorStateInfo.normalizedTime;
     }
 
     public void SetState(State newState)
@@ -30,18 +28,6 @@ public class EnemyController : MovableObject, IPlayerFSM
             _isNewState = true;
             e = newState;
         }
-    }
-
-    void MovementAI()
-    {
-        if (Time.time > nextTime)
-        {
-            nextTime = Time.time + TimeLeft;
-            movementAI = Random.Range(1, 3);
-        }
-
-        if (movementAI == 1) velocity = Vector3.left;
-        else if (movementAI == 2) velocity = Vector3.right;
     }
 
     IEnumerator FSMMain()
@@ -59,7 +45,9 @@ public class EnemyController : MovableObject, IPlayerFSM
         {
             yield return null;
             if (_isNewState) break;
-            MovementAI();
+
+            if (player && (Vector2.Distance(player.transform.position, transform.position) < 6f))
+                SetState(State.Walk);
 
         } while (!_isNewState);
     }
@@ -70,6 +58,25 @@ public class EnemyController : MovableObject, IPlayerFSM
         {
             yield return null;
             if (_isNewState) break;
+
+            velocity = player.transform.position - transform.position;
+            velocity.y = 0f;
+            velocity.z = 0f;
+
+            velocity = velocity.normalized;
+
+            if (Vector2.Distance(player.transform.position, transform.position) > 6f)
+            {
+                velocity = Vector3.zero;
+                SetState(State.Idle);
+            }
+
+            if (Vector2.Distance(player.transform.position, transform.position) < 3f)
+            {
+                target = player.transform.position;
+                SetState(State.Attack);
+            }
+
         } while (!_isNewState);
     }
 
@@ -84,11 +91,30 @@ public class EnemyController : MovableObject, IPlayerFSM
 
     public IEnumerator Hurt()
     {
+        float timeSpan = 0.0f;
+        float checkTime = 0.5f;
+
+        rb.constraints = 0;
+        velocity = Vector3.zero;
+        rb.AddForce(Vector2.right*20f, ForceMode2D.Impulse);
+
         do
         {
             yield return null;
             if (_isNewState) break;
+
+            timeSpan += Time.deltaTime;
+            if (timeSpan > checkTime)
+            {
+                timeSpan = 0;
+                SetState(State.Idle);
+            }
+
         } while (!_isNewState);
+
+        rb.velocity = Vector2.zero;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public virtual IEnumerator Attack() { yield return null; }
