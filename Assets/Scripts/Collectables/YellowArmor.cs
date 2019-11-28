@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class YellowArmor : CollectableObject
 {
+    public EquipmentItemObject yellowArmor;
     void Start()
     {
-        SetColor(Color.yellow);
+        myColor = Color.yellow;
+        SetColor(myColor);
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().inventory.items.Add(yellowArmor);
+            collision.gameObject.GetComponent<PlayerController>().ArmorEquip(yellowArmor);
+            collision.gameObject.GetComponent<PlayerController>().SetColor(myColor);
+            Destroy(this.gameObject);
+        }
+    }
 }

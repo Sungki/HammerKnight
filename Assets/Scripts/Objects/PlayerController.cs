@@ -13,7 +13,7 @@ public class PlayerController : MovableObject, IPlayerFSM
     private bool _isNewState = false;
     private Rigidbody2D rb;
 
-    public PlayerInventoryObject myInventory;
+    public InventoryObject inventory;
 
     private void Awake()
     {
@@ -32,6 +32,26 @@ public class PlayerController : MovableObject, IPlayerFSM
             _isNewState = true;
             e = newState;
         }
+    }
+
+    public void HammerEquip(EquipmentItemObject obj)
+    {
+        this.attack = obj.attack;
+    }
+
+    public void ArmorEquip(EquipmentItemObject obj)
+    {
+        this.defense = obj.defense;
+    }
+
+    public void SetColor(Color color)
+    {
+        GetComponent<Renderer>().material.SetColor("_Color", color);
+    }
+
+    public void SetHammerColor(Color color)
+    {
+        transform.GetChild(1).GetComponentInChildren<Renderer>().material.SetColor("_Color", color);
     }
 
     IEnumerator FSMMain()

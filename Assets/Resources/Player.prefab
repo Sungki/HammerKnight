@@ -302,9 +302,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+  hp: 10
+  attack: 1
+  defense: 1
   jump: {fileID: 0}
   hammer: {fileID: 0}
   e: 0
+  inventory: {fileID: 11400000, guid: 36e444dcad394fd49821839504b1e5a7, type: 2}
 --- !u!114 &5700266087956897604
 MonoBehaviour:
   m_ObjectHideFlags: 0

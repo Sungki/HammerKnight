@@ -6,6 +6,7 @@ public class CollectableObject : MonoBehaviour
 {
     private float distance = 0.8f;
     private Vector3 originalPosition;
+    public Color myColor;
 
     private void Start()
     {
@@ -31,13 +32,5 @@ public class CollectableObject : MonoBehaviour
     void Rotate()
     {
         this.transform.Rotate(Vector3.up * 5f);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

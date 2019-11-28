@@ -118,3 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab26a595a9313af4c80544c8e63c04e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColor: {r: 0, g: 0, b: 0, a: 0}
+  yellowArmor: {fileID: 11400000, guid: 1a6650118e5d67941b397d07ff3cf558, type: 2}
