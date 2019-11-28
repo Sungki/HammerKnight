@@ -17,7 +17,6 @@ public class YellowArmor : CollectableObject
         {
             collision.gameObject.GetComponent<PlayerController>().inventory.items.Add(yellowArmor);
             collision.gameObject.GetComponent<PlayerController>().ArmorEquip(yellowArmor);
-            collision.gameObject.GetComponent<PlayerController>().SetColor(myColor);
             Destroy(this.gameObject);
         }
     }

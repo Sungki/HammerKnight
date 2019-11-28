@@ -12,4 +12,5 @@ public class BasicItemObject : ScriptableObject
 {
     public EItemType type;
     public string itemName;
+    public Color color;
 }

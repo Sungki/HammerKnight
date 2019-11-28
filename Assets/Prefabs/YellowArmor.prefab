@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myColor: {r: 0, g: 0, b: 0, a: 0}
-  yellowArmor: {fileID: 11400000, guid: 1a6650118e5d67941b397d07ff3cf558, type: 2}
+  yellowArmor: {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}

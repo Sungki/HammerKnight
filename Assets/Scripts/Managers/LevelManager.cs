@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private ScreenState currentScreen = 0;
+    public ScreenState currentScreen = 0;
     Stack<GameObject> sceneStack = new Stack<GameObject>();
 
     GameObject redGuyPrefab;

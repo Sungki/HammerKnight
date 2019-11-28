@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21498b934ad2cd247949a52551ec6d84, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 1a6650118e5d67941b397d07ff3cf558, type: 2}
+  items: []
+  myArmor: {fileID: 0}
+  myHammer: {fileID: 0}

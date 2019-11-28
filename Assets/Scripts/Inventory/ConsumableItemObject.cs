@@ -10,10 +10,8 @@ public enum EStat
 [CreateAssetMenu(fileName = "ConsumableItem", menuName = "MyCustomObjects/ConsumableItemObject", order = 1)]
 public class ConsumableItemObject : BasicItemObject
 {
-
     public EStat stat;
     public int value;
-
 
     ConsumableItemObject()
     {

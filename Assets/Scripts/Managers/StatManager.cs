@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    private int playerLife = 3;
-    private int playerCoin = 0;
-    private bool allDied = false;
+    public int playerHP = 10;
+    public int coins = 0; 
+    private bool died = false;
 
     private void Awake()
     {
@@ -15,56 +15,52 @@ public class StatManager : MonoBehaviour
 
     public void Init()
     {
-        playerLife = 3;
-        playerCoin = 0;
-        allDied = false;
+        playerHP = 10;
+        coins = 0;
+        died = false;
     }
 
-    public string GetPlayerLife()
+    public string GetPlayerHP()
     {
-        return "Player: " + playerLife.ToString();
+        return "Player HP: " + playerHP.ToString();
     }
 
     public string GetScore()
     {
-        return "Score: " + playerCoin.ToString();
+        return "Coin score: " + coins.ToString();
     }
 
-    public void ReduceLife()
+    public void ReduceHP(int ap)
     {
-        playerLife--;
-        if (playerLife <= 0)
+        playerHP -= ap;
+        if (playerHP <= 0)
         {
             Destroy(transform.parent.GetComponentInChildren<GameManager>().player.gameObject);
-            allDied = true;
-        }
-        else
-        {
-            transform.parent.GetComponentInChildren<GameManager>().RespawnPlayer();
+            died = true;
         }
     }
 
     public void AddCoin()
     {
-        playerCoin++;
+        coins++;
     }
 
     private void OnGUI()
     {
-        if (allDied)
+        if (died)
         {
-            GUI.Box(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 300, 50), "All Dead!!");
+            GUI.Box(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 300, 50), "You Died!!");
 
             if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2, 300, 100), "Do you want to Restart?"))
             {
-                allDied = false;
+                died = false;
                 Init();
                 transform.parent.GetComponentInChildren<LevelManager>().Init();
                 transform.parent.GetComponentInChildren<LevelManager>().NextLevel();
             }
             if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 150, 300, 100), "Do you want to end?"))
             {
-                allDied = false;
+                died = false;
                 transform.parent.GetComponentInChildren<LevelManager>().GotoScreen("EndScreen");
                 transform.parent.GetComponentInChildren<GameManager>().ShowSummary();
             }

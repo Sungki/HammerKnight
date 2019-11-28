@@ -18,7 +18,6 @@ public class YellowHammer: CollectableObject
         {
             collision.gameObject.GetComponent<PlayerController>().inventory.items.Add(yellowHammer);
             collision.gameObject.GetComponent<PlayerController>().HammerEquip(yellowHammer);
-            collision.gameObject.GetComponent<PlayerController>().SetHammerColor(myColor);
             Destroy(this.gameObject);
         }
     }

@@ -12,14 +12,16 @@ public class PlayerController : MovableObject, IPlayerFSM
     public State e;
     private bool _isNewState = false;
     private Rigidbody2D rb;
-
-    public InventoryObject inventory;
+    public InventoryObject inventory = null;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         jump = GetComponent<Jump>();
         hammer = GetComponentInChildren<HammerAttack>();
+
+        if (inventory.myArmor) ArmorEquip(inventory.myArmor);
+        if (inventory.myHammer) HammerEquip(inventory.myHammer);
 
         SetState(State.Idle);
         StartCoroutine(FSMMain());
@@ -37,19 +39,23 @@ public class PlayerController : MovableObject, IPlayerFSM
     public void HammerEquip(EquipmentItemObject obj)
     {
         this.attack = obj.attack;
+        inventory.myHammer = obj;
+        SetHammerColor(obj.color);
     }
 
     public void ArmorEquip(EquipmentItemObject obj)
     {
         this.defense = obj.defense;
+        inventory.myArmor = obj;
+        SetColor(obj.color);
     }
 
-    public void SetColor(Color color)
+    private void SetColor(Color color)
     {
         GetComponent<Renderer>().material.SetColor("_Color", color);
     }
 
-    public void SetHammerColor(Color color)
+    private void SetHammerColor(Color color)
     {
         transform.GetChild(1).GetComponentInChildren<Renderer>().material.SetColor("_Color", color);
     }
