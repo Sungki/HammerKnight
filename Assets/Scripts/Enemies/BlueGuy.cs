@@ -6,12 +6,34 @@ public class BlueGuy : EnemyController
 {
     private void Start()
     {
+        speed = 2f;
+
         var render = GetComponent<Renderer>();
         render.material.SetColor("_Color", Color.blue);
     }
 
     public override IEnumerator Attack()
     {
-        yield return null;
+        Vector3 temp = transform.position;
+        float timeSpan = 0.0f;
+        float checkTime = 0.5f;
+        rb.AddForce(velocity * 5f, ForceMode2D.Impulse);
+        transform.rotation = transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        do
+        {
+            yield return null;
+            if (_isNewState) break;
+
+            timeSpan += Time.deltaTime;
+            if (timeSpan > checkTime)
+            {
+                timeSpan = 0;
+                SetState(State.Idle);
+            }
+
+        } while (!_isNewState);
+
+        transform.rotation = transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
