@@ -11,10 +11,9 @@ public class PlayerController : MovableObject, IPlayerFSM
 
     public State e;
     private bool _isNewState = false;
-    private AnimatorStateInfo myAnimatorStateInfo;
-    private float myAnimatorNormalizedTime = 0.0f;
-
     private Rigidbody2D rb;
+
+    public PlayerInventoryObject myInventory;
 
     private void Awake()
     {
@@ -24,11 +23,6 @@ public class PlayerController : MovableObject, IPlayerFSM
 
         SetState(State.Idle);
         StartCoroutine(FSMMain());
-    }
-
-    private void Update()
-    {
-        myAnimatorNormalizedTime = myAnimatorStateInfo.normalizedTime;
     }
 
     public void SetState(State newState)
@@ -80,17 +74,11 @@ public class PlayerController : MovableObject, IPlayerFSM
     {
         hammer.fj.enabled = false;
         hammer.hj.enabled = true;
-        myAnimatorNormalizedTime = 0;
 
         do
         {
             yield return null;
             if (_isNewState) break;
-
-            if (myAnimatorNormalizedTime >= 1)
-            {
-                SetState(State.Idle);
-            }
 
         } while (!_isNewState);
 
