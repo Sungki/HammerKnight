@@ -11,6 +11,7 @@ public class StartScreen : MonoBehaviour
         {
             if (Input.GetKey("escape")) Application.Quit();
             mainMenu = true;
+            ToolBox.GetInstance().GetManager<GameManager>().InitText();
         }
     }
 

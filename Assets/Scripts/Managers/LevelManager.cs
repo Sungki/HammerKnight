@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     GameObject redGuyPrefab;
     GameObject blueGuyPrefab;
+    GameObject greenGuyPrefab;
     GameObject playerPrefab;
 
     public bool IsLevelScene()
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        greenGuyPrefab = Resources.Load<GameObject>("GreenGuy");
         redGuyPrefab = Resources.Load<GameObject>("RedGuy");
         blueGuyPrefab = Resources.Load<GameObject>("BlueGuy");
         playerPrefab = Resources.Load<GameObject>("Player");
@@ -69,7 +71,11 @@ public class LevelManager : MonoBehaviour
                 break;
         }
 
-        Load();
+        if (ToolBox.GetInstance().GetManager<GameManager>().pressLoad)
+        {
+            ToolBox.GetInstance().GetManager<GameManager>().pressLoad = false;
+            Load();
+        }
     }
 
     private void CreateLevel<T>() where T : LevelBase
@@ -78,7 +84,7 @@ public class LevelManager : MonoBehaviour
         PushScene(go);
 
         sceneStack.Peek().transform.parent = this.gameObject.transform;
-        sceneStack.Peek().AddComponent<T>().SetPrefab(playerPrefab, redGuyPrefab, blueGuyPrefab);
+        sceneStack.Peek().AddComponent<T>().SetPrefab(playerPrefab, redGuyPrefab, blueGuyPrefab, greenGuyPrefab);
         sceneStack.Peek().GetComponent<T>().CreateLevel();
     }
 
@@ -106,15 +112,18 @@ public class LevelManager : MonoBehaviour
     void Load()
     {
         string name = PlayerPrefs.GetString("armor");
-        ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.myArmor = (EquipmentItemObject)Resources.Load(name);
+        if (name != null)
+            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().ArmorEquip((EquipmentItemObject)Resources.Load(name));
+
         name = PlayerPrefs.GetString("hammer");
-        ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.myHammer = (EquipmentItemObject)Resources.Load(name);
+        if (name != null)
+            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().HammerEquip((EquipmentItemObject)Resources.Load(name));
 
         int cnt = PlayerPrefs.GetInt("invenCnt");
         for (int i = 0; i < cnt; i++)
         {
             name = PlayerPrefs.GetString("inven" + i.ToString());
-            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.items[i] = (EquipmentItemObject)Resources.Load(name);
+            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.items.Add((EquipmentItemObject)Resources.Load(name));
         }
     }
 }

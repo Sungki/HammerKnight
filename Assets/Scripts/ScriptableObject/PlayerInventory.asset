@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21498b934ad2cd247949a52551ec6d84, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  items: []
-  myArmor: {fileID: 0}
-  myHammer: {fileID: 0}
+  items:
+  - {fileID: 11400000, guid: d785e1410b7f2dc45888faaaaac352e5, type: 2}
+  - {fileID: 11400000, guid: d785e1410b7f2dc45888faaaaac352e5, type: 2}
+  - {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
+  myArmor: {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
+  myHammer: {fileID: 11400000, guid: d785e1410b7f2dc45888faaaaac352e5, type: 2}

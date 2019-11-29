@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3938812262545471810}
   - component: {fileID: 3938812262545471814}
   - component: {fileID: 3938812262545471815}
-  - component: {fileID: 3483705119065600112}
+  - component: {fileID: 5776237772778126226}
   m_Layer: 0
-  m_Name: BlueGuy
+  m_Name: GreenGuy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5055e7f5c2903324bb01f72bc4aaef6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3483705119065600112
+--- !u!114 &5776237772778126226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,17 +140,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3938812262545471820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fe4950732597c4fb9c9daf06aab096, type: 3}
+  m_Script: {fileID: 11500000, guid: 752de4ea47285f444a744fa08d48908d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
-  hp: 5
-  attack: 1
+  hp: 10
+  attack: 2
   defense: 1
   e: 0
   items:
+  - {fileID: 4894413114271543649, guid: f447cfc6859493240a37154632c73155, type: 3}
+  - {fileID: 3043347191991806607, guid: 4c32b8005d6b6474dad4a6d2f1899f02, type: 3}
+  - {fileID: 3043347191991806607, guid: 4c32b8005d6b6474dad4a6d2f1899f02, type: 3}
   - {fileID: 379278197969848311, guid: 925c2aeefeb57dc4faadf7ad54df9e03, type: 3}
   - {fileID: 379278197969848311, guid: e21ef8892b2227f4f954a698ec494de1, type: 3}
-  - {fileID: 4894413114271543649, guid: f447cfc6859493240a37154632c73155, type: 3}
-  - {fileID: 379278197969848311, guid: e72c2d9db3c3fcf4fb5a7ecd0117058d, type: 3}
-  - {fileID: 379278197969848311, guid: a5d9fc7700185e54f927660c30ad42fd, type: 3}

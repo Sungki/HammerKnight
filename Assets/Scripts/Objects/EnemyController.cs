@@ -62,7 +62,9 @@ public class EnemyController : MovableObject, IPlayerFSM
             yield return null;
             if (_isNewState) break;
 
-            velocity = player.transform.position - transform.position;
+            if(player != null)
+                velocity = player.transform.position - transform.position;
+
             velocity.y = 0f;
             velocity.z = 0f;
 

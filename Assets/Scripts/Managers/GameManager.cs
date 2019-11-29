@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private bool isPause = false;
     private bool isInventory = false;
 
+    public bool pressLoad = false;
+
     private void Awake()
     {
         myCanvas = GameObject.Find("Canvas");
@@ -90,23 +92,13 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
+        pressLoad = true;
+
         if (PlayerPrefs.HasKey("hp"))
         {
             transform.parent.GetComponentInChildren<StatManager>().playerHP = PlayerPrefs.GetFloat("hp");
             transform.parent.GetComponentInChildren<StatManager>().coins = PlayerPrefs.GetInt("coins");
             transform.parent.GetComponentInChildren<LevelManager>().currentScreen = (ScreenState)PlayerPrefs.GetInt("level");
-
-/*            string name = PlayerPrefs.GetString("armor");
-            player.GetComponent<PlayerController>().inventory.myArmor = (EquipmentItemObject)Resources.Load(name);
-            name = PlayerPrefs.GetString("hammer");
-            player.GetComponent<PlayerController>().inventory.myHammer = (EquipmentItemObject)Resources.Load(name);
-
-            int cnt = PlayerPrefs.GetInt("invenCnt");
-            for (int i = 0; i < cnt; i++)
-            {
-                name = PlayerPrefs.GetString("inven" + i.ToString());
-                player.GetComponent<PlayerController>().inventory.items[i] = (EquipmentItemObject)Resources.Load(name);
-            }*/
         }
     }
 
