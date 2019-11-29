@@ -58,10 +58,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey("escape") && transform.parent.GetComponentInChildren<LevelManager>().IsLevelScene())
+        if (Input.GetKeyDown("escape") && transform.parent.GetComponentInChildren<LevelManager>().IsLevelScene())
         {
             isPause = true;
             Time.timeScale = 0.0f;
+        }
+
+        if (Input.GetKeyDown("escape") && isInventory)
+        {
+            isPause = false;
+            isInventory = false;
+            Time.timeScale = 1.0f;
         }
     }
 
