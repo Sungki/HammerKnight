@@ -11,7 +11,7 @@ public class EndScreen : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("escape"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToolBox.GetInstance().GetManager<GameManager>().InitText();
             ToolBox.GetInstance().GetManager<StatManager>().Init();

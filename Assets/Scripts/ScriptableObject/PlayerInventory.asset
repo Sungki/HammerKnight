@@ -12,23 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21498b934ad2cd247949a52551ec6d84, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
-  - {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
-  - {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
-  - {fileID: 11400000, guid: d785e1410b7f2dc45888faaaaac352e5, type: 2}
-  - {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
-  - {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
-  - {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
-  - {fileID: 11400000, guid: b16db54b9432b334791494f00a57b4fc, type: 2}
-  - {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
-  - {fileID: 11400000, guid: e8b8d14a52895ea45a17809f8431d6b6, type: 2}
-  - {fileID: 11400000, guid: b16db54b9432b334791494f00a57b4fc, type: 2}
-  - {fileID: 11400000, guid: b16db54b9432b334791494f00a57b4fc, type: 2}
-  - {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
-  - {fileID: 11400000, guid: 7e7adefaafcfa624b9d07aabd9d947c3, type: 2}
-  - {fileID: 11400000, guid: d785e1410b7f2dc45888faaaaac352e5, type: 2}
-  - {fileID: 11400000, guid: 7e7adefaafcfa624b9d07aabd9d947c3, type: 2}
-  - {fileID: 11400000, guid: 7e7adefaafcfa624b9d07aabd9d947c3, type: 2}
-  myArmor: {fileID: 11400000, guid: 7e7adefaafcfa624b9d07aabd9d947c3, type: 2}
-  myHammer: {fileID: 11400000, guid: d9ebecd2d5566b544ad8719e91a5453a, type: 2}
+  items: []
+  myArmor: {fileID: 0}
+  myHammer: {fileID: 0}

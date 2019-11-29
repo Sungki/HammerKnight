@@ -114,18 +114,21 @@ public class LevelManager : MonoBehaviour
     void Load()
     {
         string name = PlayerPrefs.GetString("armor");
-        if (name != null)
+        if (name != "")
             ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().ArmorEquip((EquipmentItemObject)Resources.Load(name));
 
         name = PlayerPrefs.GetString("hammer");
-        if (name != null)
+        if (name != "")
             ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().HammerEquip((EquipmentItemObject)Resources.Load(name));
 
         int cnt = PlayerPrefs.GetInt("invenCnt");
-        for (int i = 0; i < cnt; i++)
+        if (cnt != 0)
         {
-            name = PlayerPrefs.GetString("inven" + i.ToString());
-            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.items.Add((EquipmentItemObject)Resources.Load(name));
+            for (int i = 0; i < cnt; i++)
+            {
+                name = PlayerPrefs.GetString("inven" + i.ToString());
+                ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.items.Add((EquipmentItemObject)Resources.Load(name));
+            }
         }
     }
 }

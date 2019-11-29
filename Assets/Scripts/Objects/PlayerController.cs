@@ -20,8 +20,17 @@ public class PlayerController : MovableObject, IPlayerFSM
         jump = GetComponent<Jump>();
         hammer = GetComponentInChildren<HammerAttack>();
 
-        if (inventory.myArmor) ArmorEquip(inventory.myArmor);
-        if (inventory.myHammer) HammerEquip(inventory.myHammer);
+        if(ToolBox.GetInstance().GetManager<GameManager>().pressLoad)
+        {
+            if (inventory.myArmor) ArmorEquip(inventory.myArmor);
+            if (inventory.myHammer) HammerEquip(inventory.myHammer);
+        }
+        else
+        {
+            inventory.items.Clear();
+            inventory.myArmor = null;
+            inventory.myHammer = null;
+        }
 
         ToolBox.GetInstance().GetManager<GameManager>().ShowHUD();
 
