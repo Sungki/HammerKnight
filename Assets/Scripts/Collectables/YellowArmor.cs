@@ -7,7 +7,7 @@ public class YellowArmor : CollectableObject
     public EquipmentItemObject yellowArmor;
     void Start()
     {
-        myColor = Color.yellow;
+        myColor = yellowArmor.color;
         SetColor(myColor);
     }
 

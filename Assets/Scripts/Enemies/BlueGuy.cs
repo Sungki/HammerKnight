@@ -14,7 +14,6 @@ public class BlueGuy : EnemyController
 
     public override IEnumerator Attack()
     {
-        Vector3 temp = transform.position;
         float timeSpan = 0.0f;
         float checkTime = 0.5f;
         rb.AddForce(velocity * 5f, ForceMode2D.Impulse);
@@ -24,6 +23,8 @@ public class BlueGuy : EnemyController
         {
             yield return null;
             if (_isNewState) break;
+
+            transform.Rotate(Vector3.right * 15f);
 
             timeSpan += Time.deltaTime;
             if (timeSpan > checkTime)

@@ -144,4 +144,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+  hp: 10
+  attack: 1
+  defense: 1
   e: 0
+  items:
+  - {fileID: 379278197969848311, guid: e72c2d9db3c3fcf4fb5a7ecd0117058d, type: 3}
+  - {fileID: 379278197969848311, guid: 85095c15cda8dec48a2d82b0e9e6a0b8, type: 3}
+  - {fileID: 4894413114271543649, guid: f447cfc6859493240a37154632c73155, type: 3}
+  - {fileID: 379278197969848311, guid: 5783b9ca14ff2834c8f1736419ecd7bf, type: 3}
+  - {fileID: 379278197969848311, guid: a5d9fc7700185e54f927660c30ad42fd, type: 3}

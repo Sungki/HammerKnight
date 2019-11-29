@@ -9,6 +9,8 @@ public class HammerHit : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().SetState(EnemyController.State.Hurt);
+            float damage = transform.parent.GetComponentInParent<PlayerController>().attack * (100 / (100 + collision.gameObject.GetComponent<EnemyController>().defense));
+            collision.gameObject.GetComponent<EnemyController>().hp -= damage;
         }
     }
 }

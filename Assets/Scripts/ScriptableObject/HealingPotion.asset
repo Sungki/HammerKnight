@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   itemName: HealingPotion
+  color: {r: 0.9528302, g: 0.20225172, b: 0.20225172, a: 0}
   stat: 0
   value: 10

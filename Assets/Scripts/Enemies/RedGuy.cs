@@ -14,7 +14,6 @@ public class RedGuy : EnemyController
 
     public override IEnumerator Attack()
     {
-        Vector3 temp = transform.position;
         float timeSpan = 0.0f;
         float checkTime = 0.5f;
         rb.AddForce(velocity * 5f, ForceMode2D.Impulse);

@@ -11,9 +11,12 @@ public class EnemyController : MovableObject, IPlayerFSM
     protected GameObject player;
     protected Rigidbody2D rb;
 
+    public GameObject[] items;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -96,7 +99,15 @@ public class EnemyController : MovableObject, IPlayerFSM
 
         rb.constraints = 0;
         velocity = Vector3.zero;
-        rb.AddForce(Vector2.right*20f, ForceMode2D.Impulse);
+
+        if(hp<=0)
+        {
+            rb.AddForce(Vector2.right * 40f, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector2.right * 20f, ForceMode2D.Impulse);
+        }
 
         do
         {
@@ -111,6 +122,13 @@ public class EnemyController : MovableObject, IPlayerFSM
             }
 
         } while (!_isNewState);
+
+        if (hp <= 0)
+        {
+            int random = Random.Range(0, 4);
+            Instantiate(items[random], new Vector3(transform.position.x, 0, 0), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
 
         rb.velocity = Vector2.zero;
         transform.rotation = Quaternion.Euler(0, 0, 0);

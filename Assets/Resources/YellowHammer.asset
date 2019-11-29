@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57d4583c415edbb489784324d5f7646b, type: 3}
-  m_Name: YellowHammerS
+  m_Name: YellowHammer
   m_EditorClassIdentifier: 
   type: 0
   itemName: YellowHammer

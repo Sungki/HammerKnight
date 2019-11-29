@@ -8,7 +8,7 @@ public class YellowHammer: CollectableObject
 
     void Start()
     {
-        myColor = Color.yellow;
+        myColor = yellowHammer.color;
         SetColor(myColor);
     }
 

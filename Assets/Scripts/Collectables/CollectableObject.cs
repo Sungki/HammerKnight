@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CollectableObject : MonoBehaviour
 {
-    private float distance = 0.8f;
-    private Vector3 originalPosition;
+//    private float distance = 0.8f;
+//    private Vector3 originalPosition;
     public Color myColor;
 
-    private void Start()
-    {
-        this.originalPosition = this.transform.position;
-    }
+//    private void Awake()
+//    {
+//        this.originalPosition = this.transform.position;
+//    }
 
     protected void SetColor(Color color)
     {
@@ -20,14 +20,14 @@ public class CollectableObject : MonoBehaviour
 
     private void Update()
     {
-        MoveUpDown();
+//        MoveUpDown();
         Rotate();
     }
 
-    void MoveUpDown()
+/*    void MoveUpDown()
     {
         this.transform.position = this.originalPosition + this.transform.up * this.distance * Mathf.Sin(Time.time);
-    }
+    }*/
 
     void Rotate()
     {

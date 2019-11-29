@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("hp", transform.parent.GetComponentInChildren<StatManager>().playerHP);
+        PlayerPrefs.SetFloat("hp", transform.parent.GetComponentInChildren<StatManager>().playerHP);
         PlayerPrefs.SetInt("coins", transform.parent.GetComponentInChildren<StatManager>().coins);
         PlayerPrefs.SetInt("level", (int)transform.parent.GetComponentInChildren<LevelManager>().currentScreen);
 
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("hp"))
         {
-            transform.parent.GetComponentInChildren<StatManager>().playerHP = PlayerPrefs.GetInt("hp");
+            transform.parent.GetComponentInChildren<StatManager>().playerHP = PlayerPrefs.GetFloat("hp");
             transform.parent.GetComponentInChildren<StatManager>().coins = PlayerPrefs.GetInt("coins");
             transform.parent.GetComponentInChildren<LevelManager>().currentScreen = (ScreenState)PlayerPrefs.GetInt("level");
 

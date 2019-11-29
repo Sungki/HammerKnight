@@ -13,9 +13,9 @@ public class MovableObject : MonoBehaviour
 
     [HideInInspector] public Vector3 velocity = Vector3.zero;
     protected float speed = 5f;
-    [SerializeField] protected int hp = 10;
-    [SerializeField] protected int attack = 1;
-    [SerializeField] protected int defense = 1;
+    public float hp = 10;
+    public float attack = 1;
+    public float defense = 1;
 
     private void FixedUpdate()
     {

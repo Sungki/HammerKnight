@@ -118,3 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113e5b0eac3746b439331e20536d0aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColor: {r: 0, g: 0, b: 0, a: 0}
+  healingPotion: {fileID: 11400000, guid: 5f0e7be70cfc8c44f9a40809e397e6c3, type: 2}

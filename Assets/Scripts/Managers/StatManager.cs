@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    public int playerHP = 10;
+    public float playerHP = 10;
     public int coins = 0; 
     private bool died = false;
 
@@ -30,12 +30,13 @@ public class StatManager : MonoBehaviour
         return "Coin score: " + coins.ToString();
     }
 
-    public void ReduceHP(int ap)
+    public void ReduceHP(float damage)
     {
-        playerHP -= ap;
+        playerHP -= damage;
         if (playerHP <= 0)
         {
-            Destroy(transform.parent.GetComponentInChildren<GameManager>().player.gameObject);
+            //            Destroy(transform.parent.GetComponentInChildren<GameManager>().player.gameObject);
+            Time.timeScale = 0.0f;
             died = true;
         }
     }
@@ -53,6 +54,7 @@ public class StatManager : MonoBehaviour
 
             if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2, 300, 100), "Do you want to Restart?"))
             {
+                Time.timeScale = 1.0f;
                 died = false;
                 Init();
                 transform.parent.GetComponentInChildren<LevelManager>().Init();
@@ -60,6 +62,7 @@ public class StatManager : MonoBehaviour
             }
             if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 150, 300, 100), "Do you want to end?"))
             {
+                Time.timeScale = 1.0f;
                 died = false;
                 transform.parent.GetComponentInChildren<LevelManager>().GotoScreen("EndScreen");
                 transform.parent.GetComponentInChildren<GameManager>().ShowSummary();

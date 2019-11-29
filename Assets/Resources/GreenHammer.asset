@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21498b934ad2cd247949a52551ec6d84, type: 3}
-  m_Name: PlayerInventory
+  m_Script: {fileID: 11500000, guid: 57d4583c415edbb489784324d5f7646b, type: 3}
+  m_Name: GreenHammer
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: b16db54b9432b334791494f00a57b4fc, type: 2}
-  myArmor: {fileID: 11400000, guid: b16db54b9432b334791494f00a57b4fc, type: 2}
-  myHammer: {fileID: 0}
+  type: 0
+  itemName: GreenHammer
+  color: {r: 0, g: 1, b: 0.013520718, a: 0}
+  attack: 3
+  defense: 0

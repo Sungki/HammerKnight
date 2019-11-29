@@ -9,15 +9,21 @@ public class Level1 : LevelBase
 
     private void Awake()
     {
-        initPos.Add(new Vector3(-2.2f, -2.4f, 0));
-        initPos.Add(new Vector3(4.5f, -2.4f, 0));
-        initPos.Add(new Vector3(8.5f, 1.6f, 0));
+        initPos.Add(new Vector3(-2.2f, 0, 0));
+        initPos.Add(new Vector3(4.5f, 0, 0));
+        initPos.Add(new Vector3(8.5f, 0, 0));
+        initPos.Add(new Vector3(10.5f, 0, 0));
+        initPos.Add(new Vector3(12.5f, 0, 0));
+        initPos.Add(new Vector3(15.5f, 0, 0));
     }
 
     public override void SetPrefab(GameObject _player, GameObject _red, GameObject _blue)
     {
         objPrefab.Add(_player);
         objPrefab.Add(_red);
+        objPrefab.Add(_blue);
+        objPrefab.Add(_blue);
+        objPrefab.Add(_blue);
         objPrefab.Add(_blue);
     }
 
