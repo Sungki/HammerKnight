@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private bool isPause = false;
     private bool isInventory = false;
 
-    public bool pressLoad = false;
+    [HideInInspector] public bool pressLoad = false;
 
     private void Awake()
     {

@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public ScreenState currentScreen = 0;
     Stack<GameObject> sceneStack = new Stack<GameObject>();
 
+    GameObject yellowGuyPrefab;
     GameObject redGuyPrefab;
     GameObject blueGuyPrefab;
     GameObject greenGuyPrefab;
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        yellowGuyPrefab = Resources.Load<GameObject>("YellowGuy");
         greenGuyPrefab = Resources.Load<GameObject>("GreenGuy");
         redGuyPrefab = Resources.Load<GameObject>("RedGuy");
         blueGuyPrefab = Resources.Load<GameObject>("BlueGuy");
@@ -84,7 +86,7 @@ public class LevelManager : MonoBehaviour
         PushScene(go);
 
         sceneStack.Peek().transform.parent = this.gameObject.transform;
-        sceneStack.Peek().AddComponent<T>().SetPrefab(playerPrefab, redGuyPrefab, blueGuyPrefab, greenGuyPrefab);
+        sceneStack.Peek().AddComponent<T>().SetPrefab(playerPrefab, redGuyPrefab, blueGuyPrefab, greenGuyPrefab, yellowGuyPrefab);
         sceneStack.Peek().GetComponent<T>().CreateLevel();
     }
 

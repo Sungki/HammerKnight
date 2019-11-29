@@ -14,7 +14,7 @@ public class Level1 : LevelBase
         initPos.Add(new Vector3(10.5f, 0, 0));
     }
 
-    public override void SetPrefab(GameObject _player, GameObject _red, GameObject _blue, GameObject _green)
+    public override void SetPrefab(GameObject _player, GameObject _red, GameObject _blue, GameObject _green, GameObject _yellow)
     {
         objPrefab.Add(_player);
         objPrefab.Add(_red);
