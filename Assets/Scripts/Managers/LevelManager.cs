@@ -68,6 +68,8 @@ public class LevelManager : MonoBehaviour
             default:
                 break;
         }
+
+        Load();
     }
 
     private void CreateLevel<T>() where T : LevelBase
@@ -99,5 +101,20 @@ public class LevelManager : MonoBehaviour
     {
         if (screen == "EndScreen") currentScreen = ScreenState.EndScreen;
         SceneManager.LoadScene(screen);
+    }
+
+    void Load()
+    {
+        string name = PlayerPrefs.GetString("armor");
+        ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.myArmor = (EquipmentItemObject)Resources.Load(name);
+        name = PlayerPrefs.GetString("hammer");
+        ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.myHammer = (EquipmentItemObject)Resources.Load(name);
+
+        int cnt = PlayerPrefs.GetInt("invenCnt");
+        for (int i = 0; i < cnt; i++)
+        {
+            name = PlayerPrefs.GetString("inven" + i.ToString());
+            ToolBox.GetInstance().GetManager<GameManager>().player.GetComponent<PlayerController>().inventory.items[i] = (EquipmentItemObject)Resources.Load(name);
+        }
     }
 }

@@ -35,7 +35,9 @@ public class Level3 : LevelBase
 
     public override void CreateLevel()
     {
-        for (int i = 0; i < objPrefab.Count; i++)
+        ToolBox.GetInstance().GetManager<GameManager>().player = Instantiate(objPrefab[0], initPos[0], Quaternion.identity);
+
+        for (int i = 1; i < objPrefab.Count; i++)
         {
             Instantiate(objPrefab[i], initPos[i], Quaternion.identity);
         }

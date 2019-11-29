@@ -17,6 +17,7 @@ public class HealingPotion : CollectableObject
         if (collision.tag == "Player")
         {
             ToolBox.GetInstance().GetManager<StatManager>().playerHP = 10;
+            ToolBox.GetInstance().GetManager<GameManager>().ShowHUD();
             Destroy(this.gameObject);
         }
     }

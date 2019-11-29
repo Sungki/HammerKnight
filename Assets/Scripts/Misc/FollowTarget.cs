@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowTarget : MonoBehaviour
 {
     GameObject target;
-    private float damping = 2f;
+    private float damping = 3f;
 
     private void Start()
     {

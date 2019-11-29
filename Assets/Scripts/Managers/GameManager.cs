@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     private Text[] textArray;
     private GameObject myCanvas;
     private bool isPause = false;
+    private bool isInventory = false;
 
     private void Awake()
     {
-        player = Resources.Load<GameObject>("Player");
         myCanvas = GameObject.Find("Canvas");
         textArray = myCanvas.GetComponentsInChildren<Text>();
         DontDestroyOnLoad(myCanvas);
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowHUD()
     {
-        textArray[0].transform.position = new Vector2(Screen.width / 2 - 150, Screen.height - 150);
-        textArray[1].transform.position = new Vector2(Screen.width / 2 + 300, Screen.height - 150);
+        textArray[0].transform.position = new Vector2(Screen.width / 2 - 250, Screen.height - 50);
+        textArray[1].transform.position = new Vector2(Screen.width / 2 + 400, Screen.height - 50);
 
         textArray[0].text = transform.parent.GetComponentInChildren<StatManager>().GetPlayerHP();
         textArray[1].text = transform.parent.GetComponentInChildren<StatManager>().GetScore();
@@ -72,8 +72,11 @@ public class GameManager : MonoBehaviour
 
         if(player.GetComponent<PlayerController>().inventory.items.Count != 0)
         {
-            PlayerPrefs.SetString("armor", player.GetComponent<PlayerController>().inventory.myArmor.name);
-            PlayerPrefs.SetString("hammer", player.GetComponent<PlayerController>().inventory.myHammer.name);
+            if(player.GetComponent<PlayerController>().inventory.myArmor != null)
+                PlayerPrefs.SetString("armor", player.GetComponent<PlayerController>().inventory.myArmor.name);
+
+            if (player.GetComponent<PlayerController>().inventory.myHammer != null)
+                PlayerPrefs.SetString("hammer", player.GetComponent<PlayerController>().inventory.myHammer.name);
 
             PlayerPrefs.SetInt("invenCnt", player.GetComponent<PlayerController>().inventory.items.Count);
             for (int i = 0; i < player.GetComponent<PlayerController>().inventory.items.Count; i++)
@@ -93,7 +96,7 @@ public class GameManager : MonoBehaviour
             transform.parent.GetComponentInChildren<StatManager>().coins = PlayerPrefs.GetInt("coins");
             transform.parent.GetComponentInChildren<LevelManager>().currentScreen = (ScreenState)PlayerPrefs.GetInt("level");
 
-            string name = PlayerPrefs.GetString("armor");
+/*            string name = PlayerPrefs.GetString("armor");
             player.GetComponent<PlayerController>().inventory.myArmor = (EquipmentItemObject)Resources.Load(name);
             name = PlayerPrefs.GetString("hammer");
             player.GetComponent<PlayerController>().inventory.myHammer = (EquipmentItemObject)Resources.Load(name);
@@ -103,7 +106,7 @@ public class GameManager : MonoBehaviour
             {
                 name = PlayerPrefs.GetString("inven" + i.ToString());
                 player.GetComponent<PlayerController>().inventory.items[i] = (EquipmentItemObject)Resources.Load(name);
-            }
+            }*/
         }
     }
 
@@ -111,29 +114,67 @@ public class GameManager : MonoBehaviour
     {
         if (isPause)
         {
-            GUI.Box(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 200, 300, 50), "Pause!!");
-
-            if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 300, 100), "Do you want to Continue?"))
+            if (isInventory)
             {
-                isPause = false;
-                Time.timeScale = 1.0f;
+                int itemCount = player.GetComponent<PlayerController>().inventory.items.Count;
+                int x = 0;
+                int y = 0;
+
+                for (int i =0; i< itemCount; i++)
+                {
+                    if (GUI.Button(new Rect(x * 102, y*102, 100, 100), player.GetComponent<PlayerController>().inventory.items[i].name))
+                    {
+                        if (Event.current.button == 0)
+                        {
+                            if(player.GetComponent<PlayerController>().inventory.items[i].name.Contains("Hammer"))
+                            {
+                                isPause = false;
+                                isInventory = false;
+                                Time.timeScale = 1.0f;
+                                player.GetComponent<PlayerController>().HammerEquip(player.GetComponent<PlayerController>().inventory.items[i]);
+                            }
+                            else
+                            {
+                                isPause = false;
+                                isInventory = false;
+                                Time.timeScale = 1.0f;
+                                player.GetComponent<PlayerController>().ArmorEquip(player.GetComponent<PlayerController>().inventory.items[i]);
+                            }
+                        }
+                    }
+                    x++;
+                    if(x>=10)
+                    {
+                        y++;
+                        x = 0;
+                    }
+                }
             }
-
-            if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 50, 300, 100), "Do you want to Save?"))
+            else
             {
-                Save();
-                isPause = false;
-                Time.timeScale = 1.0f;
-            }
+                GUI.Box(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 200, 300, 50), "Pause!!");
 
-            if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 200, 300, 100), "Do you want to Quit?"))
-            {
-                isPause = false;
-                Time.timeScale = 1.0f;
-                InitText();
-                transform.parent.GetComponentInChildren<StatManager>().Init();
-                transform.parent.GetComponentInChildren<LevelManager>().Init();
-                transform.parent.GetComponentInChildren<LevelManager>().CurrentScreen();
+                if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 100, 300, 100), "Do you want to Equip?"))
+                {
+                    isInventory = true;
+                }
+
+                if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 50, 300, 100), "Do you want to Save?"))
+                {
+                    Save();
+                    isPause = false;
+                    Time.timeScale = 1.0f;
+                }
+
+                if (GUI.Button(new Rect(Screen.width / 2 - 150, Screen.height / 2 + 200, 300, 100), "Do you want to Quit?"))
+                {
+                    isPause = false;
+                    Time.timeScale = 1.0f;
+                    InitText();
+                    transform.parent.GetComponentInChildren<StatManager>().Init();
+                    transform.parent.GetComponentInChildren<LevelManager>().Init();
+                    transform.parent.GetComponentInChildren<LevelManager>().CurrentScreen();
+                }
             }
         }
     }

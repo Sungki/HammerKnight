@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class CollectableObject : MonoBehaviour
 {
-//    private float distance = 0.8f;
-//    private Vector3 originalPosition;
     public Color myColor;
-
-//    private void Awake()
-//    {
-//        this.originalPosition = this.transform.position;
-//    }
 
     protected void SetColor(Color color)
     {
@@ -20,17 +13,21 @@ public class CollectableObject : MonoBehaviour
 
     private void Update()
     {
-//        MoveUpDown();
         Rotate();
     }
-
-/*    void MoveUpDown()
-    {
-        this.transform.position = this.originalPosition + this.transform.up * this.distance * Mathf.Sin(Time.time);
-    }*/
 
     void Rotate()
     {
         this.transform.Rotate(Vector3.up * 5f);
+    }
+
+    private void OnDestroy()
+    {
+        int enemyCount = 0;
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (enemyCount == 0)
+        {
+            ToolBox.GetInstance().GetManager<LevelManager>().NextLevel();
+        }
     }
 }

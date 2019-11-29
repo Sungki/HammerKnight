@@ -11,6 +11,7 @@ public class EnemyHit : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().SetState(PlayerController.State.Hurt);
             float damage = transform.GetComponent<EnemyController>().attack * (100 / (100 + collision.gameObject.GetComponent<PlayerController>().defense));
             ToolBox.GetInstance().GetManager<StatManager>().ReduceHP(damage);
+            ToolBox.GetInstance().GetManager<GameManager>().ShowHUD();
         }
     }
 }

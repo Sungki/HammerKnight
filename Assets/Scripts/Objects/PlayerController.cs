@@ -23,6 +23,8 @@ public class PlayerController : MovableObject, IPlayerFSM
         if (inventory.myArmor) ArmorEquip(inventory.myArmor);
         if (inventory.myHammer) HammerEquip(inventory.myHammer);
 
+        ToolBox.GetInstance().GetManager<GameManager>().ShowHUD();
+
         SetState(State.Idle);
         StartCoroutine(FSMMain());
     }

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
-  hp: 10
+  hp: 5
   attack: 1
   defense: 1
   e: 0

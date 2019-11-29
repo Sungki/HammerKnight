@@ -22,7 +22,9 @@ public class StatManager : MonoBehaviour
 
     public string GetPlayerHP()
     {
-        return "Player HP: " + playerHP.ToString();
+        float hp = Mathf.Round(playerHP * 10) * 0.1f;
+        if (hp <= 0) hp = 0;
+        return "Player HP: " + hp.ToString();
     }
 
     public string GetScore()
@@ -35,8 +37,7 @@ public class StatManager : MonoBehaviour
         playerHP -= damage;
         if (playerHP <= 0)
         {
-            //            Destroy(transform.parent.GetComponentInChildren<GameManager>().player.gameObject);
-            Time.timeScale = 0.0f;
+            Destroy(transform.parent.GetComponentInChildren<GameManager>().player.gameObject);
             died = true;
         }
     }
